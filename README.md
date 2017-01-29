@@ -13,7 +13,7 @@ This will create a deployable, static version of the application in the `./dist`
 
 ## Challenges
 - Author Admin
-- Delete Course
+- ~~Delete Course~~
 - Hide empty course list
 - Prompt user about unsaved changes
 - Add additional client side validation

@@ -16,6 +16,18 @@ describe('Store', () => {
 
     const actual = store.getState().courses[0];
 
-    expect(actual).toEqual(course)
+    expect(actual).toEqual(course);
+  });
+
+  it('should handle deleting courses', () => {
+    const course = {id: 1};
+    const store = createStore(rootReducer, Object.assign({}, initialState, {courses: [course]}));
+
+    const action = courseActions.deleteCourseSuccess(course);
+    store.dispatch(action);
+
+    const newState = store.getState();
+
+    expect(newState.courses.length).toBe(0);
   });
 });

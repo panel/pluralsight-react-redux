@@ -12,16 +12,18 @@ export class ManageCoursePage extends React.Component {
     this.state = {
       course: Object.assign({}, this.props.course),
       errors: {},
-      saving: false
+      saving: false,
+      deleting: false
     };
 
     this.updateCourseState = this.updateCourseState.bind(this);
     this.saveCourse = this.saveCourse.bind(this);
+    this.deleteCourse = this.deleteCourse.bind(this);
     this.redirect = this.redirect.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.course.id !== nextProps.course.id) {
+    if (nextProps.course && this.props.course.id !== nextProps.course.id) {
       this.setState({course: Object.assign({}, nextProps.course)});
     }
   }
@@ -55,16 +57,32 @@ export class ManageCoursePage extends React.Component {
 
     this.setState({saving: true});
     this.props.actions.saveCourse(this.state.course)
-      .then(this.redirect)
+      .then(() => {
+        this.redirect('saved');
+      })
       .catch(error => {
         toastr.error(error);
         this.setState({saving: false});
       });
   }
 
-  redirect() {
+  deleteCourse(course) {
+    event.preventDefault();
+    this.setState({deleting: true});
+
+    this.props.actions.deleteCourse(this.state.course)
+      .then(() => {
+        this.redirect('deleted');
+      })
+      .catch(error => {
+        toastr.error(error);
+        this.setState({saving: false});
+      });
+  }
+
+  redirect(action) {
     this.setState({saving: false});
-    toastr.success('Course successfully saved!');
+    toastr.success(`Course successfully ${action}!`);
     this.context.router.push('/courses');
   }
 
@@ -74,10 +92,12 @@ export class ManageCoursePage extends React.Component {
           allAuthors={this.props.authors}
           onChange={this.updateCourseState}
           onSave={this.saveCourse}
+          onDelete={this.deleteCourse}
           course={this.state.course}
           errors={this.state.errors}
           loading={this.state.saving}
-          />
+          deleting={this.state.deleting}
+        />
     );
   }
 }

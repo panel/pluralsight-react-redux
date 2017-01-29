@@ -2,10 +2,15 @@ import React from 'react';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
-const CourseForm = ({course, allAuthors, onSave, onChange, loading, errors}) => {
+const CourseForm = ({course, allAuthors, onSave, onChange, onDelete, loading, deleting, errors}) => {
     return (
         <form>
-            <h1>Manage Course</h1>
+            <h1>Manage Course <small><a
+                href="#"
+                id="delete-button"
+                disable={loading || deleting}
+                onClick={onDelete}
+            >{deleting ? 'Deleting...' : 'Delete'}</a></small></h1>
             <TextInput
                 name="title"
                 label="Title"
@@ -38,7 +43,7 @@ const CourseForm = ({course, allAuthors, onSave, onChange, loading, errors}) => 
 
             <input
                 type="submit"
-                disable={loading}
+                disable={loading || deleting}
                 value={loading ? 'Saving...' : 'Save'}
                 className="btn btn-primary"
                 onClick={onSave} />
@@ -51,7 +56,9 @@ CourseForm.propTypes = {
     allAuthors: React.PropTypes.array,
     onSave: React.PropTypes.func.isRequired,
     onChange: React.PropTypes.func.isRequired,
+    onDelete: React.PropTypes.func.isRequired,
     loading: React.PropTypes.bool,
+    deleting: React.PropTypes.bool,
     errors: React.PropTypes.object
 };
 
