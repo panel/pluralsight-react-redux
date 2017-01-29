@@ -18,7 +18,7 @@ This will create a deployable, static version of the application in the `./dist`
 - Prompt user about unsaved changes
 - Add additional client side validation
 - Handle 404s
-- Show # of courses in header
+- ~~Show # of courses in header~~
 - Pagination
 - Sort Course Table
 - Revert abandoned changes
