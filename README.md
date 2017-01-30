@@ -12,7 +12,7 @@ This will start a development webpack service that will lint, run tests and serv
 This will create a deployable, static version of the application in the `./dist` folder.
 
 ## Challenges
-- Author Admin
+- ~~Author Admin~~
 - ~~Delete Course~~
 - ~~Hide empty course list~~
 - Prompt user about unsaved changes

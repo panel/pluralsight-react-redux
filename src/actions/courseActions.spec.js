@@ -54,7 +54,7 @@ describe('Async Actions', () => {
     });
   });
 
-  describe('Delete Course', (done) => {
+  describe('Delete Course', () => {
     it('should create BEGIN_AJAX_CALL and DELETE_COURSE_SUCCESS when loading courses', (done) => {
       const expectedActions = [
         {type: types.BEGIN_AJAX_CALL},
