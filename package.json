@@ -1,4 +1,4 @@
- {
+{
   "name": "pluralsight-redux-starter",
   "version": "1.0.0",
   "description": "Starter kit for React and Redux Pluralsight course by Cory House",
@@ -24,6 +24,7 @@
     "bootstrap": "3.3.6",
     "immutable": "^3.8.1",
     "jquery": "2.2.3",
+    "lodash": "^4.17.4",
     "react": "15.0.2",
     "react-dom": "15.0.2",
     "react-redux": "4.4.5",
